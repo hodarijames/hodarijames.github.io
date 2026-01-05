@@ -1,0 +1,718 @@
+/* ISLANDS Lab Website Styles */
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styles */
+header {
+    background-color: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 120px;
+    width: auto;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 16px;
+    transition: color 0.3s ease;
+    padding: 5px 0;
+}
+
+nav a:hover,
+nav a.active {
+    color: #2c7a7b;
+    border-bottom: 2px solid #2c7a7b;
+}
+
+/* Hero Banner with Background */
+.hero-banner {
+    position: relative;
+    background-image: url('images/hero-background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+}
+
+.hero-banner .container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.hero-banner h1 {
+    font-size: 56px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.hero-banner .tagline {
+    font-size: 24px;
+    color: #ffffff;
+    font-weight: 300;
+    font-style: italic;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+/* Mission Section */
+.mission {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.mission-text {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    color: #444;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mission-text strong {
+    color: #2c7a7b;
+    font-weight: 600;
+}
+
+/* News Section */
+.news {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+}
+
+.news h2 {
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 40px;
+    color: #1a1a1a;
+    text-align: center;
+}
+
+.news-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #e5e5e5;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.news-item:last-child {
+    border-bottom: none;
+}
+
+.news-item.collapsible .news-header {
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    transition: background-color 0.2s ease;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.news-item.collapsible .news-header:hover {
+    background-color: #f0f0f0;
+}
+
+.news-date {
+    font-weight: 600;
+    color: #2c7a7b;
+    flex-shrink: 0;
+}
+
+.news-content {
+    color: #444;
+    font-size: 16px;
+    flex-grow: 1;
+}
+
+.toggle-icon {
+    color: #2c7a7b;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-left: auto;
+    transition: transform 0.3s ease;
+}
+
+.news-item.expanded .toggle-icon {
+    transform: rotate(180deg);
+}
+
+.news-details {
+    display: none;
+    margin-top: 10px;
+    padding: 15px 20px;
+    background-color: #fff;
+    border-left: 3px solid #2c7a7b;
+    border-radius: 4px;
+    color: #444;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.paper-link {
+    color: #2c7a7b;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.paper-link:hover {
+    text-decoration: underline;
+}
+
+/* Affiliation Section */
+.affiliation {
+    padding: 40px 0;
+    background-color: #fff;
+    text-align: center;
+}
+
+.affiliation p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Research Page Styles */
+.page-header {
+    background-color: #f8f9fa;
+    padding: 60px 0 40px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.page-header h1 {
+    font-size: 42px;
+    font-weight: 300;
+    color: #1a1a1a;
+    text-align: center;
+}
+
+/* Page Header Banner (for Research page) */
+.page-header-banner {
+    position: relative;
+    background-image: url('images/hero-background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.page-header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+}
+
+.page-header-banner .container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.page-header-banner h1 {
+    font-size: 48px;
+    font-weight: 300;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.content-section {
+    padding: 60px 0;
+}
+
+.content-section h2 {
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 25px;
+    color: #2c7a7b;
+}
+
+.content-section h3 {
+    font-size: 22px;
+    font-weight: 500;
+    margin: 30px 0 15px 0;
+    color: #1a1a1a;
+}
+
+.content-section p,
+.content-section ul {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.content-section ul {
+    padding-left: 30px;
+}
+
+.content-section li {
+    margin-bottom: 12px;
+}
+
+.research-image {
+    max-width: 100%;
+    height: auto;
+    margin: 30px 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.research-image-medium {
+    max-width: 80%;
+    height: auto;
+    margin: 30px auto;
+    display: block;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Side-by-side image layout */
+.image-row {
+    display: flex;
+    gap: 30px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.image-row-small {
+    display: flex;
+    gap: 20px;
+    margin: 30px auto;
+    flex-wrap: wrap;
+    max-width: 70%;
+}
+
+.image-col {
+    flex: 1;
+    min-width: 300px;
+}
+
+.research-image-half {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.research-image-small {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.image-col .caption {
+    margin-top: 10px;
+}
+
+.caption {
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* People Page Styles */
+.person-card {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.person-card:last-child {
+    border-bottom: none;
+}
+
+.person-image {
+    flex-shrink: 0;
+}
+
+.person-image img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.person-info h3 {
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #1a1a1a;
+}
+
+.person-title {
+    font-size: 16px;
+    color: #2c7a7b;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.person-bio {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+.person-links {
+    margin-top: 15px;
+}
+
+.person-links a {
+    color: #2c7a7b;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: 500;
+}
+
+.person-links a:hover {
+    text-decoration: underline;
+}
+
+.student-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 40px 0;
+}
+
+.student-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid #e5e5e5;
+    color: #444;
+    line-height: 1.6;
+}
+
+.student-list li:last-child {
+    border-bottom: none;
+}
+
+/* Publications Page */
+.publication {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.publication:last-child {
+    border-bottom: none;
+}
+
+.pub-authors {
+    font-weight: 500;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+}
+
+.pub-title {
+    font-style: italic;
+    color: #2c7a7b;
+    margin-bottom: 5px;
+}
+
+.pub-details {
+    color: #666;
+    font-size: 15px;
+}
+
+.pub-link {
+    color: #2c7a7b;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.pub-link:hover {
+    text-decoration: underline;
+}
+
+/* Resources Page */
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.resource-card {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #e5e5e5;
+    transition: box-shadow 0.3s ease;
+}
+
+.resource-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.resource-card h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: #2c7a7b;
+}
+
+.resource-card p {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+.resource-card a {
+    color: #2c7a7b;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.resource-card a:hover {
+    text-decoration: underline;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 20px 0;
+    margin-top: 60px;
+}
+
+.footer-horizontal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.footer-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-left .separator {
+    color: #666;
+}
+
+.footer-right {
+    color: #999;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .hero-banner {
+        min-height: 300px;
+    }
+    
+    .hero-banner h1 {
+        font-size: 36px;
+    }
+    
+    .hero-banner .tagline {
+        font-size: 18px;
+    }
+    
+    .person-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .person-image img {
+        margin: 0 auto;
+    }
+    
+    .footer-horizontal {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .footer-left {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .footer-left .separator {
+        display: none;
+    }
+    
+    .image-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .image-row-small {
+        flex-direction: column;
+        gap: 20px;
+        max-width: 100%;
+    }
+    
+    .image-col {
+        min-width: 100%;
+    }
+    
+    .research-image-medium {
+        max-width: 100%;
+    }
+    
+    .logo img {
+        height: 90px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .mission-text,
+    .content-section p {
+        font-size: 16px;
+    }
+    
+    .hero-banner {
+        min-height: 250px;
+    }
+    
+    .hero-banner h1 {
+        font-size: 32px;
+    }
+    
+    .hero-banner .tagline {
+        font-size: 16px;
+    }
+    
+    .logo img {
+        height: 70px;
+    }
+}
+
+/* Email Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    color: white;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.modal-content p {
+    margin: 15px 0;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 35px;
+    font-weight: 300;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover {
+    color: #2c7a7b;
+}

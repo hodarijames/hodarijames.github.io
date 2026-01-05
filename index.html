@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISLANDS Lab - Interstellar Search for Life Around Nearby Dwarf Stars</title>
+    <link rel="stylesheet" href="landing-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="landing-container">
+        <div class="content-wrapper fade-in">
+            <!-- Main title with ISLANDS PNG -->
+            <div class="main-title">
+                <img src="images/islands_text.png" alt="ISLANDS Lab" class="islands-logo">
+            </div>
+
+            <!-- Full acronym -->
+            <p class="acronym-full">Interstellar Search for Life Around Nearby Dwarf Stars</p>
+
+            <div class="divider"></div>
+
+            <!-- Subtitle with PI name -->
+            <p class="pi-name">Hodari-Sadiki Hubbard-James</p>
+            
+            <!-- Institution and position -->
+            <p class="position">Assistant Professor of Astronomy</p>
+            <p class="institution">Agnes Scott College</p>
+
+            <!-- Navigation circles -->
+            <nav class="circle-nav">
+                <a href="home.html" class="nav-circle">
+                    <span>About</span>
+                </a>
+                <a href="research.html" class="nav-circle">
+                    <span>Research</span>
+                </a>
+                <a href="people.html" class="nav-circle">
+                    <span>People</span>
+                </a>
+                <a href="publications.html" class="nav-circle">
+                    <span>Publications</span>
+                </a>
+                <a href="resources.html" class="nav-circle">
+                    <span>Resources</span>
+                </a>
+                <a href="cv.pdf" target="_blank" class="nav-circle">
+                    <span>C.V.</span>
+                </a>
+                <a href="#contact" class="nav-circle" onclick="showContact(); return false;">
+                    <span>Contact</span>
+                </a>
+            </nav>
+
+            <!-- Image credit -->
+            <p class="image-credit">
+                Background: An artist's illustration of our solar system and what lies beyond, including the interstellar medium, other galaxies, and the closest exoplanets to Earth. Credit: Charles Carter/Keck Institute for Space Studies
+            </p>
+        </div>
+    </div>
+
+    <!-- Contact modal -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeContact()">&times;</span>
+            <h2>Contact</h2>
+            <p>Email: hjames at agnesscott dot edu</p>
+            <p>Agnes Scott College</p>
+            <p>Bradley Observatory</p>
+        </div>
+    </div>
+
+    <script>
+        // Fade in animation on load
+        window.addEventListener('load', function() {
+            document.querySelector('.fade-in').classList.add('active');
+        });
+
+        // Contact modal
+        function showContact() {
+            document.getElementById('contact-modal').style.display = 'flex';
+        }
+
+        function closeContact() {
+            document.getElementById('contact-modal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('contact-modal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

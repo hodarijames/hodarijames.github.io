@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People - ISLANDS Lab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo"><a href="index.html">
+                <img src="images/islands_logo_zoomed.png" alt="ISLANDS Lab Logo"></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="people.html" class="active">People</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-header-banner">
+            <div class="page-header-overlay">
+                <div class="container">
+                    <h1>People</h1>
+                </div>
+            </div>
+        </div>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>Principal Investigator</h2>
+                
+                <div class="person-card">
+                    <div class="person-image">
+                        <img src="images/hodari_headshot.jpg" alt="Dr. Hodari-Sadiki Hubbard-James">
+                    </div>
+                    <div class="person-info">
+                        <h3>Dr. Hodari-Sadiki Hubbard-James</h3>
+                        <p class="person-title">Assistant Professor of Astronomy & Co-Director, Bradley Observatory</p>
+                        <p class="person-bio">
+                            Hodari has been Assistant Professor of Astronomy and Co-Director of the Bradley Observatory at Agnes 
+                            Scott College since July 2023. He received his B.A. in Physics from Berea College, his M.S. in Biomedical 
+                            Engineering from the University of Cincinnati, and his Ph.D. in Astronomy from Georgia State University. 
+                            In addition to directing research at the ISLANDS Lab, he teaches courses in astronomy, astrophysics, and 
+                            data science.
+                        </p>
+                        <div class="person-links">
+                            <a href="#" onclick="showEmailModal(); return false;">Email</a>
+                            <a href="https://www.linkedin.com/in/hodarijames" target="_blank">LinkedIn</a>
+                            <a href="cv.pdf" target="_blank">CV</a>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Lab Members</h2>
+                
+                <h3 style="margin-top: 30px;">Current Undergraduate Researchers</h3>
+                <ul class="student-list">
+                    <li><strong>Sasha Arbogast</strong> (Agnes Scott College) - Radial velocity confirmation of exoplanets around K dwarf stars</li>
+                    <li><strong>Kayla Gossett Roper</strong> (Agnes Scott College) - Astrobiology and photosynthesis under non-solar illumination</li>
+                    <li><strong>Mai Le</strong> (Recent Graduate) - Technosignature analysis and optical follow-up of the Wow! Signal</li>
+                    <li><strong>Jacinda Byam</strong> (College of Charleston) - K dwarf stellar age estimation using Hβ line diagnostics</li>
+                </ul>
+
+                <h3 style="margin-top: 30px;">Graduate Student Collaborator</h3>
+                <ul class="student-list">
+                    <li><strong>Sebastian Carrazco Gaxiola</strong> (Georgia State University, PhD Candidate) - Stellar spectroscopy and K dwarf characterization</li>
+                </ul>
+
+                <h3 style="margin-top: 30px;">Alumni</h3>
+                <ul class="student-list">
+                    <li><strong>Daniela Garcia-Lara</strong> (Agnes Scott College, 2024-2025)</li>
+                    <li><strong>Nia Suitt</strong> (now at University of Central Florida, 2024-2025)</li>
+                </ul>
+
+                <h2 style="margin-top: 60px;">Collaborators</h2>
+                <ul class="student-list">
+                    <li><strong>Prof. Todd J. Henry</strong> (<a href="http://www.recons.org" target="_blank">RECONS Institute</a>) - K dwarf stellar characterization</li>
+                    <li><strong>Prof. Abel Méndez</strong> (<a href="http://phl.upr.edu" target="_blank">Planetary Habitability Laboratory</a>, University of Puerto Rico at Arecibo) - Technosignature analysis</li>
+                    <li><strong>Leonardo Paredes</strong> (Steward Observatory, University of Arizona) - Stellar spectroscopy</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-horizontal">
+                <div class="footer-left">
+                    <span>Contact: hjames at agnesscott dot edu</span>
+                    <span class="separator">•</span>
+                    <span>Agnes Scott College</span>
+                </div>
+                <div class="footer-right">
+                    © 2026 ISLANDS Lab
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Email modal -->
+    <div id="email-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEmailModal()">&times;</span>
+            <h2>Contact</h2>
+            <p><strong>Email:</strong> hjames at agnesscott dot edu</p>
+            <p><strong>Institution:</strong> Agnes Scott College</p>
+            <p><strong>Office:</strong> Bradley Observatory</p>
+        </div>
+    </div>
+
+    <script>
+        function showEmailModal() {
+            document.getElementById('email-modal').style.display = 'flex';
+        }
+
+        function closeEmailModal() {
+            document.getElementById('email-modal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('email-modal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
