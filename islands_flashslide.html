@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>When Can Life Survive Around K Dwarf Stars? — ISLANDS Lab</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0d1117;
+    color: #e8e8e8;
+    font-family: 'Source Sans 3', sans-serif;
+    overflow-x: hidden;
+  }
+
+  .slide-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    aspect-ratio: 16 / 9;
+    background:
+      radial-gradient(ellipse at 20% 30%, rgba(40, 45, 55, 0.6) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 60%, rgba(30, 35, 45, 0.4) 0%, transparent 50%),
+      #0d1117;
+    overflow: hidden;
+    padding: 4% 5%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Noise texture overlay */
+  .slide-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    background-size: 200px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Stars */
+  .stars {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(220, 225, 235, 0.7);
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* Symposium label */
+  .symposium-label {
+    position: absolute;
+    top: 3%;
+    right: 4%;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+    font-size: clamp(0.6rem, 1.2vw, 1rem);
+    color: #d4956a;
+    font-style: italic;
+    letter-spacing: 0.02em;
+    z-index: 10;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.3s forwards;
+  }
+
+  /* Main question */
+  .question {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 5.5vw, 4.5rem);
+    text-align: center;
+    line-height: 1.15;
+    margin-bottom: auto;
+    z-index: 10;
+    opacity: 0;
+    animation: fadeSlideDown 0.8s ease 0.5s forwards;
+  }
+  .q-white { color: #e8e8e8; }
+  .q-green { color: #4CAF50; }
+  .q-orange { color: #E67E22; }
+
+  /* Middle content row */
+  .content-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+    margin-bottom: auto;
+    gap: 2%;
+  }
+
+  /* Stars section (left) */
+  .stars-section {
+    flex: 0 0 30%;
+    text-align: center;
+    opacity: 0;
+    animation: fadeSlideRight 0.7s ease 1s forwards;
+  }
+  .star-comparison {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 5%;
+    margin-bottom: 0.8em;
+  }
+  .sun-container, .kdwarf-container { text-align: center; }
+
+  .sun-orb {
+    width: clamp(60px, 9vw, 130px);
+    height: clamp(60px, 9vw, 130px);
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%,
+      #b8a860 0%, #8a7d40 40%, #5c5430 80%, #3d3820 100%);
+    box-shadow: 0 0 20px rgba(184, 168, 96, 0.15);
+    animation: subtlePulse 6s ease-in-out infinite;
+  }
+  .kdwarf-orb {
+    width: clamp(42px, 6.5vw, 92px);
+    height: clamp(42px, 6.5vw, 92px);
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%,
+      #f0a050 0%, #d4782a 40%, #b85c18 70%, #8a4010 100%);
+    box-shadow: 0 0 25px rgba(220, 130, 50, 0.25);
+    animation: subtlePulse 5s ease-in-out 1s infinite;
+  }
+
+  .star-label {
+    font-size: clamp(0.5rem, 1vw, 0.85rem);
+    color: rgba(220, 220, 220, 0.5);
+    margin-top: 0.4em;
+    line-height: 1.3;
+  }
+  .kdwarf-label {
+    font-size: clamp(0.5rem, 1vw, 0.85rem);
+    color: #d4956a;
+    margin-top: 0.4em;
+    font-weight: 600;
+  }
+  .stat-line {
+    font-weight: 700;
+    font-size: clamp(0.8rem, 1.8vw, 1.4rem);
+    color: #e8e8e8;
+    margin-top: 0.6em;
+  }
+  .stat-sub {
+    font-size: clamp(0.55rem, 1vw, 0.85rem);
+    color: rgba(220, 220, 220, 0.55);
+    margin-top: 0.15em;
+  }
+
+  /* Pipeline arrow (center) */
+  .pipeline-section {
+    flex: 0 0 34%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    animation: fadeIn 0.6s ease 1.4s forwards;
+  }
+  .arrow-track {
+    position: relative;
+    width: 100%;
+    height: 4px;
+    margin-bottom: 0.8em;
+  }
+  .arrow-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #c0712a, #6aaa50);
+    width: 0%;
+    animation: drawArrow 1.2s ease 1.8s forwards;
+  }
+  .arrow-head {
+    position: absolute;
+    right: -2px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 16px solid #6aaa50;
+    opacity: 0;
+    animation: fadeIn 0.3s ease 3s forwards;
+  }
+  .arrow-dot {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #c0712a;
+    opacity: 0;
+    animation: fadeIn 0.3s ease 1.8s forwards;
+  }
+  .pipeline-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .pipeline-step {
+    font-weight: 700;
+    font-size: clamp(0.55rem, 1.1vw, 0.9rem);
+    color: rgba(220, 220, 220, 0.7);
+    text-align: center;
+    opacity: 0;
+  }
+  .pipeline-step:nth-child(1) { animation: fadeIn 0.4s ease 2.2s forwards; }
+  .pipeline-step:nth-child(2) { animation: fadeIn 0.4s ease 2.5s forwards; }
+  .pipeline-step:nth-child(3) { animation: fadeIn 0.4s ease 2.8s forwards; }
+  .pipeline-step:nth-child(4) { animation: fadeIn 0.4s ease 3.1s forwards; }
+
+  /* Grow tent section (right) */
+  .tent-section {
+    flex: 0 0 28%;
+    text-align: center;
+    opacity: 0;
+    animation: fadeSlideLeft 0.7s ease 1.2s forwards;
+  }
+  .grow-tent {
+    position: relative;
+    width: clamp(120px, 14vw, 200px);
+    margin: 0 auto 0.6em;
+    aspect-ratio: 1;
+    background:
+      linear-gradient(180deg, rgba(65, 75, 68, 0.95) 0%, rgba(50, 58, 52, 0.95) 100%);
+    border-radius: 8px;
+    border: 2px solid rgba(110, 150, 130, 0.35);
+    overflow: hidden;
+  }
+  .tent-led {
+    position: absolute;
+    top: -6px;
+    left: 12%;
+    right: 12%;
+    height: 12px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, #d4956a 0%, #b87040 50%, #a05830 100%);
+    box-shadow: 0 4px 20px rgba(210, 140, 60, 0.25);
+  }
+  .tent-led::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: -20%;
+    right: -20%;
+    height: 35px;
+    background: radial-gradient(ellipse, rgba(255, 160, 60, 0.08) 0%, transparent 70%);
+  }
+  .tent-soil {
+    position: absolute;
+    bottom: 12%;
+    left: 8%;
+    right: 8%;
+    height: 14%;
+    background: linear-gradient(180deg, #8a7050 0%, #6d5840 100%);
+    border-radius: 2px;
+  }
+  .tent-plant {
+    position: absolute;
+    bottom: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .plant-stem {
+    width: 2px;
+    background: #5a8a4a;
+    border-radius: 1px;
+  }
+  .plant-head {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, #5caa4c, #3d8a30);
+    position: relative;
+  }
+  /* Leaf veins */
+  .plant-head::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 60%;
+    background: rgba(30, 60, 25, 0.5);
+  }
+  .plant-head::after {
+    content: '';
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 55%;
+    height: 1px;
+    background: rgba(30, 60, 25, 0.4);
+    box-shadow: 0 0 0 0 transparent;
+  }
+
+  .plant-1 { left: 18%; }
+  .plant-1 .plant-stem { height: 28px; }
+  .plant-1 .plant-head { width: 16px; }
+
+  .plant-2 { left: 35%; }
+  .plant-2 .plant-stem { height: 42px; }
+  .plant-2 .plant-head { width: 22px; }
+
+  .plant-3 { left: 52%; }
+  .plant-3 .plant-stem { height: 38px; }
+  .plant-3 .plant-head { width: 20px; }
+
+  .plant-4 { left: 72%; }
+  .plant-4 .plant-stem { height: 24px; }
+  .plant-4 .plant-head { width: 14px; }
+
+  .tent-label-main {
+    font-weight: 700;
+    font-size: clamp(0.7rem, 1.5vw, 1.15rem);
+    line-height: 1.25;
+  }
+  .tent-label-sub {
+    font-size: clamp(0.5rem, 0.9vw, 0.78rem);
+    color: rgba(220, 220, 220, 0.55);
+    margin-top: 0.15em;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    z-index: 10;
+    opacity: 0;
+    animation: fadeIn 0.6s ease 3.4s forwards;
+  }
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(1rem, 2.5vw, 1.8rem);
+    letter-spacing: 0.01em;
+  }
+  .footer-affil {
+    font-size: clamp(0.6rem, 1.1vw, 0.9rem);
+    color: rgba(220, 220, 220, 0.6);
+    margin-top: 0.2em;
+    letter-spacing: 0.05em;
+  }
+
+  .scale-note {
+    position: absolute;
+    bottom: 2%;
+    left: 3%;
+    font-size: clamp(0.4rem, 0.7vw, 0.6rem);
+    color: rgba(220, 220, 220, 0.35);
+    font-style: italic;
+    z-index: 10;
+    opacity: 0;
+    animation: fadeIn 0.5s ease 3.6s forwards;
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+  @keyframes fadeSlideDown {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeSlideRight {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes fadeSlideLeft {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes drawArrow {
+    to { width: 95%; }
+  }
+  @keyframes subtlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+  @keyframes sway {
+    0%, 100% { transform: rotate(-1deg); }
+    50% { transform: rotate(1deg); }
+  }
+
+  .tent-plant { animation: sway 4s ease-in-out infinite; transform-origin: bottom center; }
+  .plant-2 { animation-delay: 0.5s; }
+  .plant-3 { animation-delay: 1s; }
+  .plant-4 { animation-delay: 1.5s; }
+</style>
+</head>
+<body>
+
+<div class="slide-container">
+  <!-- Stars -->
+  <div class="stars" id="stars"></div>
+
+  <!-- Symposium label -->
+  <div class="symposium-label">2026 Frontiers of Science Symposium</div>
+
+  <!-- Main question -->
+  <h1 class="question">
+    <span class="q-white">When can </span><span class="q-green">life survive</span><br>
+    <span class="q-white">around </span><span class="q-orange">K dwarf stars</span><span class="q-white">?</span>
+  </h1>
+
+  <!-- Content row -->
+  <div class="content-row">
+    <!-- Stars comparison -->
+    <div class="stars-section">
+      <div class="star-comparison">
+        <div class="sun-container">
+          <div class="sun-orb"></div>
+          <div class="star-label">The Sun<br>(G Dwarf)</div>
+        </div>
+        <div class="kdwarf-container">
+          <div class="kdwarf-orb"></div>
+          <div class="kdwarf-label">K Dwarf</div>
+        </div>
+      </div>
+      <div class="stat-line">580 K stars surveyed</div>
+      <div class="stat-sub">Cooler, smaller, longer-lived</div>
+    </div>
+
+    <!-- Pipeline arrow -->
+    <div class="pipeline-section">
+      <div class="arrow-track">
+        <div class="arrow-dot"></div>
+        <div class="arrow-line"></div>
+        <div class="arrow-head"></div>
+      </div>
+      <div class="pipeline-labels">
+        <span class="pipeline-step">Characterize</span>
+        <span class="pipeline-step">Classify</span>
+        <span class="pipeline-step">Simulate</span>
+        <span class="pipeline-step">Test</span>
+      </div>
+    </div>
+
+    <!-- Grow tent -->
+    <div class="tent-section">
+      <div class="grow-tent">
+        <div class="tent-led"></div>
+        <div class="tent-soil"></div>
+        <div class="tent-plant plant-1">
+          <div class="plant-head"></div>
+          <div class="plant-stem"></div>
+        </div>
+        <div class="tent-plant plant-2">
+          <div class="plant-head"></div>
+          <div class="plant-stem"></div>
+        </div>
+        <div class="tent-plant plant-3">
+          <div class="plant-head"></div>
+          <div class="plant-stem"></div>
+        </div>
+        <div class="tent-plant plant-4">
+          <div class="plant-head"></div>
+          <div class="plant-stem"></div>
+        </div>
+      </div>
+      <div class="tent-label-main">Plant growth under<br>non-solar starlight</div>
+      <div class="tent-label-sub">Simulated K dwarf spectra</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-name">Hodari-Sadiki Hubbard-James, Ph.D.</div>
+    <div class="footer-affil">Agnes Scott College &middot; RECONS</div>
+  </div>
+
+  <div class="scale-note">*Not Illustrated To Scale</div>
+</div>
+
+<script>
+  // Generate twinkling stars
+  const starsEl = document.getElementById('stars');
+  const count = 45;
+  for (let i = 0; i < count; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    const size = Math.random() < 0.15 ? (3 + Math.random() * 3) : (1.5 + Math.random() * 2);
+    star.style.width = size + 'px';
+    star.style.height = size + 'px';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.opacity = 0.2 + Math.random() * 0.5;
+    star.style.animation = `twinkle ${3 + Math.random() * 5}s ease-in-out ${Math.random() * 4}s infinite`;
+    starsEl.appendChild(star);
+  }
+</script>
+
+</body>
+</html>
