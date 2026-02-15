@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept: Mature Quiet K Dwarf System — For Sully</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #111;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .brief {
+    color: #ccc;
+    max-width: 700px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .brief h2 { color: #e8a84c; font-size: 18px; margin-bottom: 8px; letter-spacing: 1px; }
+  .brief p { font-size: 13px; line-height: 1.6; color: #999; }
+
+  .canvas {
+    width: 700px;
+    height: 520px;
+    background: radial-gradient(ellipse at 30% 45%, #0b1525 0%, #060a14 60%, #020408 100%);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  }
+
+  .canvas::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(1px 1px at 70% 15%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 85% 35%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 65% 75%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1px 1px at 90% 60%, rgba(255,255,255,0.2), transparent),
+      radial-gradient(1px 1px at 55% 90%, rgba(255,255,255,0.35), transparent),
+      radial-gradient(1px 1px at 80% 85%, rgba(255,255,255,0.25), transparent),
+      radial-gradient(1px 1px at 48% 20%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 95% 45%, rgba(255,255,255,0.2), transparent);
+    pointer-events: none;
+  }
+
+  /* Calm K dwarf star */
+  .star {
+    position: absolute;
+    left: -50px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 55% 45%, #ffaa55, #ee8833 50%, #cc6622 80%, #993300);
+    box-shadow:
+      0 0 40px 15px rgba(255,160,60,0.25),
+      0 0 80px 30px rgba(255,120,40,0.1);
+  }
+
+  .star::after {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 45%, rgba(255,200,120,0.2) 0%, transparent 60%);
+  }
+
+  /* Gentle warm light */
+  .warm-light {
+    position: absolute;
+    left: 100px;
+    top: 0;
+    bottom: 0;
+    width: 500px;
+    background: linear-gradient(90deg,
+      rgba(255,180,80,0.06) 0%,
+      rgba(255,160,60,0.03) 30%,
+      transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Planet wrapper — everything centered on the same point */
+  .planet-system {
+    position: absolute;
+    right: 120px;
+    top: 48%;
+    transform: translateY(-50%);
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Atmosphere glow — centered in wrapper */
+  .atmo-glow {
+    position: absolute;
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(100,200,150,0.2);
+    box-shadow:
+      0 0 12px 4px rgba(80,180,120,0.08),
+      inset 0 0 8px 2px rgba(80,180,120,0.04);
+  }
+
+  /* Planet — Earth-like, alive */
+  .planet {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 40%,
+      #4a8a55 5%,
+      #3a7a4a 20%,
+      #2a6a40 35%,
+      #3a6a8a 50%,
+      #2a5a7a 65%,
+      #1a3a4a 90%);
+    box-shadow:
+      inset -12px -4px 15px rgba(0,0,0,0.6),
+      0 0 20px 4px rgba(80,160,120,0.12),
+      0 0 40px 8px rgba(60,140,100,0.06);
+    position: relative;
+  }
+
+  /* Cloud wisps */
+  .clouds {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    width: 60px;
+    height: 22px;
+    background: radial-gradient(ellipse, rgba(255,255,255,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(2px);
+  }
+
+  .clouds-2 {
+    position: absolute;
+    top: 50px;
+    left: 30px;
+    width: 45px;
+    height: 16px;
+    background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(2px);
+  }
+
+  /* Subtle green shimmer on terminator */
+  .life-shimmer {
+    position: absolute;
+    top: 25px;
+    left: 15px;
+    width: 35px;
+    height: 40px;
+    background: radial-gradient(ellipse, rgba(80,180,60,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(3px);
+    animation: shimmer 6s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+
+  /* Habitable zone band */
+  .hz-band {
+    position: absolute;
+    left: 200px;
+    top: 30%;
+    bottom: 30%;
+    width: 300px;
+    border-top: 1px dashed rgba(255,180,80,0.1);
+    border-bottom: 1px dashed rgba(255,180,80,0.1);
+    pointer-events: none;
+  }
+
+  /* Annotations */
+  .annotation {
+    position: absolute;
+    color: #aaa;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .annotation .callout {
+    display: block;
+    font-size: 8px;
+    color: #666;
+    margin-top: 2px;
+  }
+
+  .label-star { left: 40px; top: 40px; text-align: center; }
+  .label-calm { left: 250px; top: 145px; }
+  .label-planet { right: 40px; top: 105px; }
+  .label-atmo { right: 25px; top: 370px; }
+  .label-hz { left: 300px; top: 400px; text-align: center; }
+
+  .label-age {
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #66cc88;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .notes {
+    margin-top: 20px;
+    max-width: 700px;
+    color: #888;
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .notes h3 { color: #e8a84c; font-size: 13px; margin-bottom: 6px; }
+  .notes ul { padding-left: 18px; margin-top: 4px; }
+  .notes li { margin-bottom: 4px; }
+
+  .comparison {
+    margin-top: 24px;
+    max-width: 700px;
+    padding: 14px 18px;
+    background: rgba(232,168,76,0.06);
+    border: 1px solid rgba(232,168,76,0.15);
+    border-radius: 6px;
+    color: #999;
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .comparison h3 { color: #e8a84c; font-size: 13px; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<div class="brief">
+  <h2>CONCEPT 2: Mature, Quiet K Dwarf System</h2>
+  <p>Companion to Concept 1. Same star, billions of years later. Everything has calmed down. Life is possible.</p>
+</div>
+
+<div class="canvas">
+  <div class="star"></div>
+  <div class="warm-light"></div>
+  <div class="hz-band"></div>
+
+  <!-- Planet system — all centered together -->
+  <div class="planet-system">
+    <div class="atmo-glow"></div>
+    <div class="planet">
+      <div class="clouds"></div>
+      <div class="clouds-2"></div>
+      <div class="life-shimmer"></div>
+    </div>
+  </div>
+
+  <!-- Annotations -->
+  <div class="annotation label-star">K Dwarf Star<br>(5+ Gyr old)<span class="callout">Same star, billions of years later</span></div>
+  <div class="annotation label-calm">Stable, steady output<span class="callout">No flares. Minimal UV.</span></div>
+  <div class="annotation label-planet">Habitable planet<span class="callout">Intact atmosphere, water, life</span></div>
+  <div class="annotation label-atmo">Healthy atmosphere retained<span class="callout">Protected over billions of years</span></div>
+  <div class="annotation label-hz">Stable habitable zone<span class="callout">Consistent for tens of billions of years</span></div>
+  <div class="annotation label-age">AGE: 5+ Gyr — THE K DWARF ADVANTAGE</div>
+</div>
+
+<div class="notes">
+  <h3>Art Direction Notes for Sully</h3>
+  <ul>
+    <li><strong>Mood:</strong> Serene, hopeful, warm. The visual payoff after Concept 1.</li>
+    <li><strong>Star:</strong> Same orange K dwarf, but calm. Smooth surface, no flares. Steady warm glow. Inviting, not threatening.</li>
+    <li><strong>Planet:</strong> Earth-like but alien. Blue-green tones for oceans and vegetation. Intact atmosphere visible as a thin glowing rim.</li>
+    <li><strong>Vegetation:</strong> Under K dwarf light, plants might trend darker green, red, or purple (the star puts out more red/infrared). Speculative but scientifically motivated.</li>
+    <li><strong>Feeling:</strong> The viewer should think "life could thrive here." Warmth, stability, time.</li>
+    <li><strong>Palette:</strong> Deep space blues/blacks. Star in warm amber/orange (softer than Concept 1). Planet in blue-greens with alien vegetation hints. Overall warmer and more inviting.</li>
+    <li><strong>No text or labels needed.</strong></li>
+    <li><strong>Dimensions:</strong> Same as Concept 1: ~10" × 12" at 300 dpi (3000 × 3600 px). PNG, dark background.</li>
+  </ul>
+</div>
+
+</body>
+</html>
