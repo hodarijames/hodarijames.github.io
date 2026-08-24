@@ -9,7 +9,7 @@ from html.parser import HTMLParser
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PAGES = ['index.html','home.html','research.html','people.html',
-         'publications.html','resources.html','library.html']
+         'publications.html','posters.html','resources.html','library.html']
 problems, notes = [], []
 
 def flag(page, msg): problems.append(f"{page}: {msg}")
@@ -83,7 +83,7 @@ for page in PAGES:
 
 # ---- 6. share metadata present -----------------------------------------
 NEEDS_META = ['index.html','home.html','research.html','people.html',
-              'publications.html','resources.html']
+              'publications.html','posters.html','resources.html']
 for page in NEEDS_META:
     f = ROOT/page
     if not f.exists(): continue

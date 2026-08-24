@@ -365,6 +365,129 @@ nav a.active {
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
+/* Poster gallery */
+.poster-intro {
+    font-size: 17px;
+    color: #444;
+    margin-bottom: 36px;
+    max-width: 680px;
+}
+
+.poster-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 42px 32px;
+}
+
+.poster-thumb {
+    display: block;
+    border: 1px solid #e2e2e2;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #f8f9fa;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.poster-thumb:hover {
+    border-color: #2c7a7b;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+}
+
+.poster-thumb img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    display: block;
+}
+
+.poster-title {
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 14px 0 6px;
+}
+
+.poster-title a {
+    color: #1a1a1a;
+    text-decoration: none;
+}
+
+.poster-title a:hover {
+    color: #2c7a7b;
+}
+
+.poster-authors {
+    font-size: 14px;
+    color: #444;
+    margin: 0 0 4px;
+    line-height: 1.5;
+}
+
+.poster-venue {
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+/* Three-poster teaser on the About page */
+.poster-teaser {
+    background-color: #fff;
+    padding: 50px 0 10px;
+}
+
+.poster-teaser h2 {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.poster-teaser .teaser-lead {
+    text-align: center;
+    color: #666;
+    margin-bottom: 28px;
+}
+
+.teaser-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+}
+
+.teaser-row a {
+    display: block;
+    border: 1px solid #e2e2e2;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #f8f9fa;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.teaser-row a:hover {
+    border-color: #2c7a7b;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+}
+
+.teaser-row img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    display: block;
+}
+
+.teaser-more {
+    text-align: center;
+    margin-top: 26px;
+}
+
+.teaser-more a {
+    color: #2c7a7b;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.teaser-more a:hover {
+    text-decoration: underline;
+}
+
 /* Current researchers: photo (or monogram) beside name and project */
 .student-grid {
     display: grid;
