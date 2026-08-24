@@ -83,7 +83,7 @@ for page in PAGES:
 
 # ---- 6. share metadata present -----------------------------------------
 NEEDS_META = ['index.html','home.html','research.html','people.html',
-              'publications.html','posters.html','resources.html']
+              'publications.html','resources.html']
 for page in NEEDS_META:
     f = ROOT/page
     if not f.exists(): continue
