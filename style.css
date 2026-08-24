@@ -365,6 +365,81 @@ nav a.active {
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
+/* Current researchers: photo (or monogram) beside name and project */
+.student-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px 32px;
+    margin-top: 20px;
+}
+
+.student-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.student-avatar {
+    flex: 0 0 84px;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #f0f0f0;
+}
+
+.student-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.student-avatar-initials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2c7a7b;
+}
+
+.student-avatar-initials span {
+    color: #ffffff;
+    font-size: 26px;
+    letter-spacing: 1px;
+}
+
+.student-meta h4 {
+    font-size: 17px;
+    color: #1a1a1a;
+    margin: 4px 0 2px;
+}
+
+.student-affil {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 6px;
+}
+
+.student-project {
+    font-size: 15px;
+    color: #444;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Rows where both images must occupy an identical box regardless of their
+   native aspect ratio. Nothing is cropped; shorter images letterbox. */
+.image-row-uniform .research-image-small {
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    background-color: #f8f9fa;
+}
+
+.image-row-uniform .image-col {
+    display: flex;
+    flex-direction: column;
+}
+
 .image-col .caption {
     margin-top: 10px;
 }
