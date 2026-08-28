@@ -9,7 +9,7 @@ from html.parser import HTMLParser
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PAGES = ['index.html','home.html','research.html','people.html',
-         'publications.html','posters.html','resources.html','library.html']
+         'publications.html','posters.html','resources.html','library.html','404.html']
 problems, notes = [], []
 
 def flag(page, msg): problems.append(f"{page}: {msg}")
@@ -30,7 +30,8 @@ for page in PAGES:
     p = Links(); p.feed(f.read_text(encoding='utf-8', errors='replace'))
     for tag, attr, ref in p.refs:
         if re.match(r'^(https?:|mailto:|#|data:|//)', ref): continue
-        target = (ROOT / ref.split('#')[0].split('?')[0])
+        rel = ref.split('#')[0].split('?')[0].lstrip('/')   # 404.html uses root-absolute paths
+        target = (ROOT / rel)
         if not target.exists():
             flag(page, f"broken {tag} {attr} -> {ref}")
 
