@@ -770,10 +770,19 @@ footer {
         gap: 20px;
     }
     
+    header {
+        position: static;
+    }
+
     nav ul {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px 18px;
+    }
+
+    nav a {
+        font-size: 15px;
     }
     
     .hero-banner {
