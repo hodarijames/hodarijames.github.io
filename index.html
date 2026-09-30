@@ -21,6 +21,7 @@
     <meta name="twitter:image" content="https://hodarijames.github.io/images/og-card.jpg">
     <title>ISLANDS Lab - Interstellar Search for Life Around Nearby Dwarf Stars</title>
     <link rel="stylesheet" href="landing-style.css">
+    <style>.contact-line{margin-top:28px;font-size:14px;color:rgba(255,255,255,0.75);letter-spacing:.3px;font-weight:300;}</style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
@@ -55,38 +56,29 @@
                 <a href="research.html" class="nav-circle">
                     <span>Research</span>
                 </a>
-                <a href="people.html" class="nav-circle">
-                    <span>People</span>
-                </a>
                 <a href="publications.html" class="nav-circle">
                     <span>Publications</span>
+                </a>
+                <a href="people.html" class="nav-circle">
+                    <span>People</span>
                 </a>
                 <a href="resources.html" class="nav-circle">
                     <span>Resources</span>
                 </a>
+                <a href="opportunities.html" class="nav-circle">
+                    <span>Opportunities</span>
+                </a>
                 <a href="cv.pdf" target="_blank" class="nav-circle">
                     <span>C.V.</span>
                 </a>
-                <a href="#contact" class="nav-circle" onclick="showContact(); return false;">
-                    <span>Contact</span>
-                </a>
             </nav>
+
+            <p class="contact-line">hjames at agnesscott dot edu &nbsp;&middot;&nbsp; Bradley Observatory, Agnes Scott College</p>
 
             <!-- Image credit -->
             <p class="image-credit">
                 Background: An artist's illustration of our solar system and what lies beyond, including the interstellar medium, other galaxies, and the closest exoplanets to Earth. Credit: Charles Carter/Keck Institute for Space Studies
             </p>
-        </div>
-    </div>
-
-    <!-- Contact modal -->
-    <div id="contact-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeContact()">&times;</span>
-            <h2>Contact</h2>
-            <p>Email: hjames at agnesscott dot edu</p>
-            <p>Agnes Scott College</p>
-            <p>Bradley Observatory</p>
         </div>
     </div>
 
@@ -96,22 +88,6 @@
             document.querySelector('.fade-in').classList.add('active');
         });
 
-        // Contact modal
-        function showContact() {
-            document.getElementById('contact-modal').style.display = 'flex';
-        }
-
-        function closeContact() {
-            document.getElementById('contact-modal').style.display = 'none';
-        }
-
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('contact-modal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
     </script>
 </body>
 </html>
